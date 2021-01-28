@@ -53,4 +53,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-firestore:22.0.1'
     implementation 'com.google.firebase:firebase-storage:19.2.1'
+
+    // Dependências do picasso (carregar imagens de url)
+    implementation 'com.squareup.picasso:picasso:2.5.2'
 }

@@ -1,9 +1,11 @@
-package com.example.meusgames
+package com.example.meusgames.ui
 
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.meusgames.databinding.ActivityMainBinding
+import com.example.meusgames.doamin.Game
 import com.google.firebase.firestore.FirebaseFirestore
 
 class MainActivity : AppCompatActivity() {
@@ -12,16 +14,23 @@ class MainActivity : AppCompatActivity() {
         const val TAG = "MainActivity"
     }
 
+    private val mainAdapter = MainAdapter(this, ::onGameClicked)
+    private val db = FirebaseFirestore.getInstance()
+
     private lateinit var bind: ActivityMainBinding
-    private lateinit var db: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bind = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bind.root)
 
-        db = FirebaseFirestore.getInstance()
         readAllDocuments()
+
+        bind.recyclerViewGames.apply {
+            adapter = mainAdapter
+            layoutManager = GridLayoutManager(this@MainActivity, 2)
+            setHasFixedSize(false)
+        }
     }
 
     private fun readAllDocuments() {
@@ -53,5 +62,9 @@ class MainActivity : AppCompatActivity() {
                 .addOnFailureListener {
                     Log.w(TAG, "Erro ao criar objeto", it)
                 }
+    }
+
+    private fun onGameClicked(game: Game) {
+        Log.d(TAG, game.toString())
     }
 }

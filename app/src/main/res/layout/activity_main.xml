@@ -6,19 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <SearchView
-        android:id="@+id/svGames"
+        android:id="@+id/searchViewGames"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/rvGames"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewGames"
         android:layout_marginHorizontal="10dp"
         android:background="@color/white"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvGames"
+        android:id="@+id/recyclerViewGames"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="5dp"
