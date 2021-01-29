@@ -29,8 +29,6 @@ class MainActivity : AppCompatActivity() {
         bind = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bind.root)
 
-        readAllDocuments()
-
         bind.recyclerViewGames.apply {
             adapter = mainAdapter
             layoutManager = GridLayoutManager(this@MainActivity, 2)
@@ -69,37 +67,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         mainViewModel.getAllGames()
-    }
-
-    private fun readAllDocuments() {
-        db.collection("teste")
-                .get()
-                .addOnSuccessListener {
-                    if (it.isEmpty) {
-                        val objetoTeste = mapOf("nome" to "Fulano",
-                                "sobrenome" to "da Silva")
-                        uploadDocument(objetoTeste)
-                        return@addOnSuccessListener
-                    }
-
-                    it.forEach { document ->
-                        Log.d(TAG, "${document.id} => ${document.data}")
-                    }
-                }
-                .addOnFailureListener {
-                    Log.w(TAG, "Erro ao ler documentos", it)
-                }
-    }
-
-    private fun uploadDocument(document: Any) {
-        db.collection("teste")
-                .add(document)
-                .addOnSuccessListener {
-                    Log.d(TAG, "Objeto adicionado com o id: ${it.id}")
-                }
-                .addOnFailureListener {
-                    Log.w(TAG, "Erro ao criar objeto", it)
-                }
     }
 
     private fun filterGames(filterText: String) {
