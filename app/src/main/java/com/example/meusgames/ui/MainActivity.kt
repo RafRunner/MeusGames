@@ -2,6 +2,7 @@ package com.example.meusgames.ui
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.SearchView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -16,9 +17,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val mainViewModel by viewModels<MainViewModel>()
-
     private val mainAdapter = MainAdapter(this, ::onGameClicked)
     private val db = FirebaseFirestore.getInstance()
+
+    private var lastFilterText = ""
 
     private lateinit var bind: ActivityMainBinding
 
@@ -37,6 +39,26 @@ class MainActivity : AppCompatActivity() {
 
         bind.searchViewGames.apply {
             isIconifiedByDefault = false
+
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    if (query == null) return false
+
+                    filterGames(query)
+
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    if (newText == null) return false
+
+                    if (newText.length >= 3) {
+                        filterGames(newText)
+                    }
+
+                    return false
+                }
+            })
         }
 
         mainViewModel.listGames.observe(this) {
@@ -75,6 +97,13 @@ class MainActivity : AppCompatActivity() {
                 .addOnFailureListener {
                     Log.w(TAG, "Erro ao criar objeto", it)
                 }
+    }
+
+    private fun filterGames(filterText: String) {
+        if (lastFilterText == filterText) return
+
+        lastFilterText = filterText
+        Log.d(TAG, filterText)
     }
 
     private fun onGameClicked(game: Game) {
