@@ -5,4 +5,10 @@
     <string name="edit_game_details">Edit game details</string>
     <string name="go_back">Go back</string>
     <string name="released">Lançamento: %s</string>
+    <string name="add_a_new_game">Add a new game</string>
+    <string name="name">Name</string>
+    <string name="created_at">Created at</string>
+    <string name="description">Description</string>
+    <string name="save_game">Save game</string>
+    <string name="add_game_image">Add game image</string>
 </resources>

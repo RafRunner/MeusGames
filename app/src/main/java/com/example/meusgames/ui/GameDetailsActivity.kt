@@ -1,5 +1,6 @@
 package com.example.meusgames.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.meusgames.R
@@ -16,6 +17,10 @@ class GameDetailsActivity : AppCompatActivity() {
         bind = ActivityGameDetailsBinding.inflate(layoutInflater)
         setContentView(bind.root)
 
+        bind.btnBack.setOnClickListener {
+            onBackPressed()
+        }
+
         val game = intent.getSerializableExtra("game") as? Game ?: return
 
         bind.tvGameNameHighlight.text = game.name
@@ -23,14 +28,16 @@ class GameDetailsActivity : AppCompatActivity() {
         bind.tvGameReleaseDate.text = getString(R.string.released).format(game.releaseDate)
         bind.tvGameDescription.text = game.description
 
-        Picasso.with(this)
+        Picasso.get()
             .load(game.imageUrl)
             .resize(500, 500)
             .centerCrop()
             .into(bind.ivGameBanner)
 
-        bind.btnBack.setOnClickListener {
-            onBackPressed()
+        bind.btnEditGame.setOnClickListener {
+            startActivity(Intent(this, AddEditGameActivity::class.java).apply {
+                putExtra("game", game)
+            })
         }
     }
 }

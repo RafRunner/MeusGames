@@ -1,6 +1,5 @@
 package com.example.meusgames.ui
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import com.example.meusgames.domain.Game
 import com.squareup.picasso.Picasso
 
 class MainAdapter(
-    private val context: Context,
     private val onGameClicked: (g: Game) -> Unit,
 ) : RecyclerView.Adapter<MainAdapter.GameViewHolder>() {
 
@@ -37,7 +35,7 @@ class MainAdapter(
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
         val game = listGames[position]
 
-        Picasso.with(context)
+        Picasso.get()
             .load(game.imageUrl)
             .resize(200, 200)
             .centerCrop()

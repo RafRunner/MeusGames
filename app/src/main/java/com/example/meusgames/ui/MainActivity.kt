@@ -17,8 +17,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val mainViewModel by viewModels<MainViewModel>()
-    private val mainAdapter = MainAdapter(this, ::onGameClicked)
-    private val db = FirebaseFirestore.getInstance()
+    private val mainAdapter = MainAdapter(::onGameClicked)
 
     private var lastFilterText = ""
 
@@ -66,6 +65,13 @@ class MainActivity : AppCompatActivity() {
             mainAdapter.updateGameList(it)
         }
 
+        bind.btnAddGame.setOnClickListener {
+            startActivity(Intent(this, AddEditGameActivity::class.java))
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
         mainViewModel.getAllGames()
     }
 
