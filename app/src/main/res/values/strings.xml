@@ -11,4 +11,10 @@
     <string name="description">Description</string>
     <string name="save_game">Save game</string>
     <string name="add_game_image">Add game image</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="remember_me">Remember me</string>
+    <string name="create_account">Create account</string>
+    <string name="confirm_password">Confirm password</string>
 </resources>

@@ -73,6 +73,8 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         mainViewModel.getAllGames()
+        bind.searchViewGames.setQuery("", false)
+        bind.searchViewGames.clearFocus()
     }
 
     private fun filterGames(filterText: String) {
