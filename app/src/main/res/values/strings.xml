@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">MeusGames</string>
     <string name="game_image">Game image</string>
+    <string name="game_thumbnail">Game Banner</string>
+    <string name="edit_game_details">Edit game details</string>
+    <string name="go_back">Go back</string>
+    <string name="released">Lançamento: %s</string>
 </resources>

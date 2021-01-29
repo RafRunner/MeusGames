@@ -39,7 +39,7 @@ class MainAdapter(
 
         Picasso.with(context)
             .load(game.imageUrl)
-            .resize(175, 100)
+            .resize(200, 200)
             .centerCrop()
             .into(holder.ivGameImg)
 

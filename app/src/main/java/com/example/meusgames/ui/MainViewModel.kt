@@ -47,7 +47,6 @@ class MainViewModel : ViewModel() {
             .add(game.toMap())
             .addOnSuccessListener {
                 allGames.add(game)
-                listGames.value = allGames
 
                 Log.d(MainActivity.TAG, "Objeto adicionado com o id: ${it.id}")
             }

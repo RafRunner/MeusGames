@@ -1,7 +1,7 @@
 package com.example.meusgames.ui
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.SearchView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -77,6 +77,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onGameClicked(game: Game) {
-        Log.d(TAG, game.toString())
+        startActivity(Intent(this, GameDetailsActivity::class.java).apply {
+            putExtra("game", game)
+        })
     }
 }
