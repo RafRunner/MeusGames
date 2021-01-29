@@ -38,6 +38,7 @@ class GameDetailsActivity : AppCompatActivity() {
             startActivity(Intent(this, AddEditGameActivity::class.java).apply {
                 putExtra("game", game)
             })
+            finish()
         }
     }
 }

@@ -18,6 +18,7 @@ class MainViewModel : ViewModel() {
         db.collection("game")
             .get()
             .addOnSuccessListener {
+                allGames.clear()
                 if (it.isEmpty) {
                     return@addOnSuccessListener
                 }
