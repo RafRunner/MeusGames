@@ -55,6 +55,9 @@ class MainActivity : AppCompatActivity() {
                     if (newText.length >= 3) {
                         filterGames(newText)
                     }
+                    else if (newText.isEmpty()) {
+                        mainViewModel.clearFilter()
+                    }
 
                     return false
                 }
@@ -103,7 +106,7 @@ class MainActivity : AppCompatActivity() {
         if (lastFilterText == filterText) return
 
         lastFilterText = filterText
-        Log.d(TAG, filterText)
+        mainViewModel.filterGames(filterText)
     }
 
     private fun onGameClicked(game: Game) {
