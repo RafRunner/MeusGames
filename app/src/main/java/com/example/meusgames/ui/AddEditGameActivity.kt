@@ -50,6 +50,8 @@ class AddEditGameActivity : AppCompatActivity() {
 
             Picasso.get()
                 .load(it.imageUrl)
+                .resize(200, 200)
+                .centerCrop()
                 .into(bind.btnAddGameImage)
 
             gameId = it.id
@@ -91,7 +93,7 @@ class AddEditGameActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        val storageReference = FirebaseStorage.getInstance().getReference(Date().toString())
+        val storageReference = FirebaseStorage.getInstance().getReference(UUID.randomUUID().toString())
 
         if (requestCode == IMAGE_CODE) {
             alertDialog.show()
@@ -110,6 +112,8 @@ class AddEditGameActivity : AppCompatActivity() {
                 alertDialog.dismiss()
                 Picasso.get()
                     .load(url)
+                    .resize(200, 200)
+                    .centerCrop()
                     .into(bind.btnAddGameImage)
 
                 gameImageUrl = url

@@ -8,18 +8,6 @@
     android:background="@drawable/kratos_background"
     tools:context=".ui.AddEditGameActivity">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnAddGameImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="280dp"
-        android:backgroundTint="@color/red"
-        android:contentDescription="@string/add_game_image"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_baseline_photo_camera_24" />
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -104,5 +92,17 @@
             android:textColor="@color/white" />
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/btnAddGameImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="260dp"
+        android:background="@color/red"
+        android:contentDescription="@string/add_game_image"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_baseline_photo_camera_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
