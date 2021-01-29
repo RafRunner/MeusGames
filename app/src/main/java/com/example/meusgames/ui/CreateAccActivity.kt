@@ -1,5 +1,6 @@
 package com.example.meusgames.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.meusgames.databinding.ActivityCreateAccBinding
@@ -12,5 +13,10 @@ class CreateAccActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         bind = ActivityCreateAccBinding.inflate(layoutInflater)
         setContentView(bind.root)
+
+        bind.btnCreateAcc.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
     }
 }
