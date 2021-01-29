@@ -2,10 +2,11 @@ package com.example.meusgames.ui
 
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.meusgames.databinding.ActivityMainBinding
-import com.example.meusgames.doamin.Game
+import com.example.meusgames.domain.Game
 import com.google.firebase.firestore.FirebaseFirestore
 
 class MainActivity : AppCompatActivity() {
@@ -13,6 +14,8 @@ class MainActivity : AppCompatActivity() {
     companion object {
         const val TAG = "MainActivity"
     }
+
+    private val mainViewModel by viewModels<MainViewModel>()
 
     private val mainAdapter = MainAdapter(this, ::onGameClicked)
     private val db = FirebaseFirestore.getInstance()
@@ -31,6 +34,16 @@ class MainActivity : AppCompatActivity() {
             layoutManager = GridLayoutManager(this@MainActivity, 2)
             setHasFixedSize(false)
         }
+
+        bind.searchViewGames.apply {
+            isIconifiedByDefault = false
+        }
+
+        mainViewModel.listGames.observe(this) {
+            mainAdapter.updateGameList(it)
+        }
+
+        mainViewModel.getAllGames()
     }
 
     private fun readAllDocuments() {

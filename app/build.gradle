@@ -54,6 +54,19 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:22.0.1'
     implementation 'com.google.firebase:firebase-storage:19.2.1'
 
+    // Dependência do Material design
+    implementation 'com.google.android.material:material:1.3.0-alpha04'
+
+    // Dependências do RecyclerView
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+
+    // Depencia para fragments e viewModels
+    implementation 'androidx.fragment:fragment-ktx:1.2.5'
+
+    // Dependência para corotinas (funções assíncronas)
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
+
     // Dependências do picasso (carregar imagens de url)
     implementation 'com.squareup.picasso:picasso:2.5.2'
 }

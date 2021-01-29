@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.meusgames.R
-import com.example.meusgames.doamin.Game
+import com.example.meusgames.domain.Game
 import com.squareup.picasso.Picasso
 
 class MainAdapter(
@@ -39,6 +39,7 @@ class MainAdapter(
 
         Picasso.with(context)
             .load(game.imageUrl)
+            .resize(holder.ivGameImg.width, holder.ivGameImg.height)
             .centerCrop()
             .into(holder.ivGameImg)
 
@@ -51,4 +52,9 @@ class MainAdapter(
     }
 
     override fun getItemCount(): Int = listGames.size
+
+    fun updateGameList(games: List<Game>) {
+        listGames = games
+        notifyDataSetChanged()
+    }
 }

@@ -1,8 +1,8 @@
-package com.example.meusgames.doamin
+package com.example.meusgames.domain
 
 import java.io.Serializable
 
-class Game(
+data class Game(
     val name: String,
     val imageId: String,
     val imageUrl: String,
