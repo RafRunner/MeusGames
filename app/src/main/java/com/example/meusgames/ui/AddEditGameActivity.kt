@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.marginBottom
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.meusgames.databinding.ActivityAddEditGameBinding
@@ -78,6 +77,7 @@ class AddEditGameActivity : AppCompatActivity() {
 
             if (gameName == "" || gameRelease == "" || gameDescription == "" || gameImageUrl == "") {
                 Toast.makeText(this, "Please, fill all information about the game!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
 
             val game = Game(gameName, "iuhsaydb", gameImageId, gameImageUrl, gameRelease, gameDescription)
@@ -104,6 +104,9 @@ class AddEditGameActivity : AppCompatActivity() {
 
         if (gameImageId == "") {
             gameImageId = UUID.randomUUID().toString()
+        }
+        else {
+            Picasso.get().invalidate(gameImageUrl)
         }
 
         val storageReference = FirebaseStorage.getInstance().getReference(gameImageId)
