@@ -34,6 +34,7 @@ class AddEditGameActivity : AppCompatActivity() {
     private lateinit var alertDialog: AlertDialog
 
     private var gameId: String = ""
+    private var gameImageId: String = ""
     private var gameImageUrl: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,6 +56,7 @@ class AddEditGameActivity : AppCompatActivity() {
                 .into(bind.btnAddGameImage)
 
             gameId = it.id
+            gameImageId = it.imageId
             gameImageUrl = it.imageUrl
         }
 
@@ -71,7 +73,7 @@ class AddEditGameActivity : AppCompatActivity() {
                 Toast.makeText(this, "Please, fill all information about the game!", Toast.LENGTH_SHORT).show()
             }
 
-            val game = Game(gameName, "iuhsaydb", gameImageUrl, gameRelease, gameDescription)
+            val game = Game(gameName, "iuhsaydb", gameImageId, gameImageUrl, gameRelease, gameDescription)
             if (gameId != "") {
                 game.id = gameId
                 addEditGameViewModel.updateGame(game)
@@ -93,7 +95,11 @@ class AddEditGameActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        val storageReference = FirebaseStorage.getInstance().getReference(UUID.randomUUID().toString())
+        if (gameImageId == "") {
+            gameImageId = UUID.randomUUID().toString()
+        }
+
+        val storageReference = FirebaseStorage.getInstance().getReference(gameImageId)
 
         if (requestCode == IMAGE_CODE) {
             alertDialog.show()
