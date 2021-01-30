@@ -4,9 +4,11 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.marginBottom
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.meusgames.databinding.ActivityAddEditGameBinding
@@ -44,20 +46,25 @@ class AddEditGameActivity : AppCompatActivity() {
 
         alertDialog = SpotsDialog.Builder().setContext(this).build()
 
-        (intent.getSerializableExtra("game") as Game?)?.let {
-            bind.tiGameName.setText(it.name)
-            bind.tiGameReleaseDate.setText(it.releaseDate)
-            bind.tiGameDescription.setText(it.description)
+        (intent.getSerializableExtra("game") as Game?)?.let { game ->
+            bind.tiGameName.setText(game.name)
+            bind.tiGameReleaseDate.setText(game.releaseDate)
+            bind.tiGameDescription.setText(game.description)
 
             Picasso.get()
-                .load(it.imageUrl)
+                .load(game.imageUrl)
                 .resize(200, 200)
                 .centerCrop()
                 .into(bind.btnAddGameImage)
 
-            gameId = it.id
-            gameImageId = it.imageId
-            gameImageUrl = it.imageUrl
+            gameId = game.id
+            gameImageId = game.imageId
+            gameImageUrl = game.imageUrl
+
+            bind.btnDeleteGame.visibility = View.VISIBLE
+            bind.btnDeleteGame.setOnClickListener {
+                addEditGameViewModel.deleteGame(game)
+            }
         }
 
         bind.btnAddGameImage.setOnClickListener {

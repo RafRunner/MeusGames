@@ -1,11 +1,13 @@
 package com.example.meusgames.ui
 
+import android.app.Activity
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.example.meusgames.domain.Game
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 
 class AddEditGameViewModel(val context: Context) : ViewModel() {
 
@@ -35,6 +37,23 @@ class AddEditGameViewModel(val context: Context) : ViewModel() {
             .addOnFailureListener {
                 Toast.makeText(context, "Error saving game", Toast.LENGTH_SHORT).show()
                 Log.e(MainActivity.TAG, "Erro ao criar game", it)
+            }
+    }
+
+    fun deleteGame(game: Game) {
+        db.collection("game")
+            .document(game.id)
+            .delete()
+            .addOnSuccessListener {
+                val storageReference = FirebaseStorage.getInstance().getReference(game.imageId)
+                storageReference.delete()
+                Toast.makeText(context, "Game deleted!", Toast.LENGTH_SHORT).show()
+                (context as Activity).finish()
+                Log.d(MainActivity.TAG, "Game de id ${game.id} deletado")
+            }
+            .addOnFailureListener {
+                Toast.makeText(context, "Error deleting game!", Toast.LENGTH_SHORT).show()
+                Log.d(MainActivity.TAG, "Erro ao deletar game de id ${game.id}")
             }
     }
 }

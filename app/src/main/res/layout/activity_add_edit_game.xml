@@ -12,11 +12,11 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20sp"
+        android:layout_marginTop="160dp"
+        android:layout_marginHorizontal="20sp"
         android:background="@drawable/pill_shape"
         android:backgroundTint="@color/white"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -86,10 +86,21 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="@color/red"
             android:text="@string/save_game"
             android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btnDeleteGame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="15dp"
+            android:backgroundTint="@color/red"
+            android:text="@string/delete_game"
+            android:textColor="@color/white"
+            android:visibility="gone" />
 
     </LinearLayout>
 
@@ -97,12 +108,12 @@
         android:id="@+id/btnAddGameImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginBottom="260dp"
         android:background="@color/red"
+        android:layout_marginTop="100dp"
         android:contentDescription="@string/add_game_image"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_photo_camera_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
